@@ -1,0 +1,126 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  BASIC_USER
+  VENUE_GIG_MANAGER
+  ARTIST_GIG_MANAGER
+  ADMIN
+}
+
+enum GigStatus {
+  PLANNING
+  CLOSED
+  CANCELLED
+}
+
+model State {
+  id          Int    @default(autoincrement()) @id
+  name        String
+  abbreviation String @db.VarChar(2)
+  country     Country   @relation(fields: [countryId], references: [id])
+  countryId   Int
+  venues      Venue[]
+  createdAt   DateTime  @default(now()) @map(name: "created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+  @@map(name: "states")
+}
+
+model Country {
+  id          Int    @default(autoincrement()) @id
+  name        String
+  alpha_2_code String @db.VarChar(2)
+  alpha_3_code String @db.VarChar(3)
+  numeric_code String @db.VarChar(5)
+  iso_code    String
+  states      State[]
+  venues      Venue[]
+  createdAt   DateTime  @default(now()) @map(name: "created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+  @@map(name: "countries")
+
+}
+
+model User {
+  id            String    @default(cuid()) @id
+  firstName     String
+  lastName      String
+  email         String    @unique
+  password      String
+  phone         String?
+  role          Role[]    @default([BASIC_USER]) // a user can have multiple roles
+  isVenueGigManager Boolean @default(false)
+  isArtistGigManager Boolean @default(false)
+  artistProfiles Artist[]
+  venueProfiles  Venue[] 
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+  @@map(name: "users")
+}
+
+model Artist {
+  id          Int    @default(autoincrement()) @id
+  name        String
+  genre       String[]
+  location    String?
+  bio         String?
+  url         String?
+  contact     User?     @relation(fields: [contactId], references: [id])
+  contactId   String?
+  upcomingGigs Gig[]
+  createdAt   DateTime  @default(now()) @map(name: "created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+  @@map(name: "artists")
+}
+
+model Gig {
+  id          Int    @default(autoincrement()) @id
+  eventName   String
+  date        DateTime
+  venue       Venue     @relation(fields: [venueId], references: [id])
+  venueId     Int
+  lineup      Artist[]
+  status      GigStatus @default(PLANNING)
+  createdAt   DateTime  @default(now()) @map(name: "created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+  @@map(name: "gigs")
+}
+
+model Venue {
+  id          Int    @default(autoincrement()) @id
+  name        String
+  address     String
+  address2    String?
+  address3    String?
+  city        String
+  state       State     @relation(fields: [stateId], references: [id])
+  stateId     Int
+  zip         String
+  country     Country   @relation(fields: [countryId], references: [id])
+  countryId   Int
+  capacity    Int?
+  contact     User?     @relation(fields: [contactId], references: [id])
+  contactId   String?
+  url         String?
+  numberOfStages Int
+  hasBackline Boolean   @default(false)
+  backlineDetails String?
+  upcomingGigs Gig[]
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now()) @map(name: "created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+  @@map(name: "venues")
+}
+
+
+
+
