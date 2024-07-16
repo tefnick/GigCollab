@@ -20,7 +20,7 @@ async function getArtistById(id: string) {
                 },
                 include: {
                     venue: {select: {name: true}},
-                    lineup: {select: {name: true}}
+                    lineup: {select: {id: true, name: true}}
                 },
                 orderBy: {
                     date: 'asc'

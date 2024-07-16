@@ -3,8 +3,8 @@ import { Gig as GigModel, GigStatus} from "@prisma/client"
 interface GigProps extends GigModel {
     venue : {
         name: string;
-        address: string;
-        city: string;
+        address?: string;
+        city?: string;
     },
     status: GigStatus;
     lineup: {
