@@ -20,9 +20,10 @@ export default function ToggleButtton() {
             className="flex flex-row px-4"
             onClick={handleToggleClick}
         >
-            {theme === 'dark'? 
-                <Image className="rounded-lg" src={moonIcon} height={40} width={40} alt="dark mode icon"/> :
-                <Image className="rounded-lg" src={sunIcon} height={40} width={40} alt="light mode icon"/>
+            {theme === 'light' || theme == undefined? 
+                <Image className="rounded-lg" src={sunIcon} height={40} width={40} alt="light mode icon"/> :
+                <Image className="rounded-lg" src={moonIcon} height={40} width={40} alt="dark mode icon"/>
+                
             }
         </button>
     )
