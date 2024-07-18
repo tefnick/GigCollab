@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import Artist from "@/components/artists/Artist";
 
+// Opt out of caching for all data requests in the route segment
+export const dynamic = 'force-dynamic'
 
 async function getArtists() {
     const artists = await prisma.artist.findMany();

@@ -1,6 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import Gig from "@/components/gigs/Gig";
 
+// Opt out of caching for all data requests in the route segment
+export const dynamic = 'force-dynamic'
+
 async function getGigs() {
     return await prisma.gig.findMany({
         where: {
