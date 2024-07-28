@@ -1,10 +1,17 @@
 import { prisma } from "@/lib/prisma";
 import Gig from "@/components/gigs/Gig";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 // Opt out of caching for all data requests in the route segment
 export const dynamic = 'force-dynamic'
 
 async function getGigs() {
+    const session = await auth()
+    if (!session) {
+        redirect('/accounts/signin')
+    }
+
     return await prisma.gig.findMany({
         where: {
             date: {

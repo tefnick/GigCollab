@@ -1,10 +1,17 @@
 import { prisma } from "@/lib/prisma";
 import Artist from "@/components/artists/Artist";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 // Opt out of caching for all data requests in the route segment
 export const dynamic = 'force-dynamic'
 
 async function getArtists() {
+    const session = await auth()
+    if (!session) {
+        redirect('/accounts/signin')
+    }
+
     const artists = await prisma.artist.findMany();
     return artists;
 }

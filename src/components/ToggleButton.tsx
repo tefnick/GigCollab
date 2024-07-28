@@ -17,13 +17,12 @@ export default function ToggleButtton() {
 
     return (
         <button 
-            className="flex flex-row px-4"
+            className="flex flex-row px-4 py-2"
             onClick={handleToggleClick}
         >
             {theme === 'light' || theme == undefined? 
                 <Image className="rounded-lg" src={sunIcon} height={40} width={40} alt="light mode icon"/> :
                 <Image className="rounded-lg" src={moonIcon} height={40} width={40} alt="dark mode icon"/>
-                
             }
         </button>
     )
