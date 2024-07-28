@@ -13,7 +13,7 @@ export default async function UserAvatar() {
       <SignOutButton />
       
       <Image 
-        src={session.user?.image} 
+        src={session.user?.image!} 
         alt="User Avatar" 
         width={60} 
         height={60} 
