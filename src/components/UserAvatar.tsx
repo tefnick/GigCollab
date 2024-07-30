@@ -1,11 +1,15 @@
 import Image from "next/image"
 import { auth } from "../auth"
 import { SignOutButton } from "./auth/SignOutButton"
+import placeholderAvatar from "@/assets/user_avatar2.png"
 
 export default async function UserAvatar() {
   const session = await auth()
 
   if (!session?.user) return null
+
+  // check user avatar image
+  let avatar = session.user?.image? session.user?.image : placeholderAvatar;
 
   return (
     <div className="flex gap-4">
@@ -13,7 +17,7 @@ export default async function UserAvatar() {
       <SignOutButton />
       
       <Image 
-        src={session.user?.image!} 
+        src={avatar}
         alt="User Avatar" 
         width={60} 
         height={60} 
