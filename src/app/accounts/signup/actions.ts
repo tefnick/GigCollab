@@ -10,8 +10,7 @@ export async function signup(prevState: FormState, formData: FormData) {
 
     // 1. validate fields
     const validationResult = SignupFormSchema.safeParse({
-      firstName: formData.get("first-name"),
-      lastName: formData.get("last-name"),
+      name: formData.get("name"),
       email: formData.get("email"),
       password: formData.get("password"),
     });
@@ -23,18 +22,17 @@ export async function signup(prevState: FormState, formData: FormData) {
       }
     }
 
-    const { firstName, lastName, email, password} = validationResult.data;
+    const { name, email, password} = validationResult.data;
     
     // 2. create user
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await prisma.user.create({
-      data: {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: hashedPassword,  
-      }
-    });
+    // const hashedPassword = await bcrypt.hash(password, 10);
+    // const user = await prisma.user.create({
+    //   data: {
+    //     name: name,
+    //     email: email,
+    //     password: hashedPassword,  
+    //   }
+    // });
 
     // revalidatePath()?
 
