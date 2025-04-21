@@ -6,7 +6,7 @@ import google from "next-auth/providers/google"
 const prisma = new PrismaClient()
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma),
   providers: [google],
   callbacks: {
     async redirect({ url, baseUrl }) {

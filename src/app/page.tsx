@@ -6,10 +6,9 @@ export default function Home() {
     <>
     <main className="font-sans">
       <h1 className="font-bold text-center text-2xl mt-6">Welcome!</h1>
-      <h2 className="font-bold text-center text-xl m-6">GigManager is a booking platform that makes booking gigs simple</h2>
-      <p className="text-center m-6">No need to hire a manager or booking agent, get your first gig in just a few clicks!</p>
+      <h2 className="font-bold text-center text-xl m-6">GigCollab is a booking tool that makes finding gigs easier.</h2>
+      <p className="text-center m-6">Get started today!</p>
     
-      <ImageSlideShow />
     </main>
     </>
   );

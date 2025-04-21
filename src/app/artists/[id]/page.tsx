@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Gig from "@/components/gigs/Gig";
+import { Button } from "@/components/ui/button";
 
 /**
  * Retrieves an artist object by its ID.
@@ -19,8 +20,12 @@ async function getArtistById(id: string) {
                     }
                 },
                 include: {
-                    venue: {select: {name: true}},
-                    lineup: {select: {id: true, name: true}}
+                    venue: {
+                        include: {
+                            state: true
+                        }
+                    },
+                    lineup: true,
                 },
                 orderBy: {
                     date: 'asc'
@@ -28,6 +33,7 @@ async function getArtistById(id: string) {
             }
         }
     })
+    console.log(artist)
     return artist;
 }
 
@@ -36,13 +42,13 @@ export default async function ArtistDetailPage({ params }: { params: { id: strin
 
     let artistContent = (
         <div key={artist?.id}>
-            <div className="bg-slate-400 dark:bg-slate-800 p-6">
+            <div className="p-6 rounded-md border-b-2 shadow-md">
                 <h1 className="font-bold text-xl mb-4">Artist Details</h1>
                 <h1>{artist?.name}</h1>
-                <h2>{artist?.genre?.join(", ")}</h2>
+                <h2>{artist?.genre.length > 1 ? `Genres: ${artist?.genre.join(", ")}` : `Genre: ${artist?.genre}.join(", ")}`}</h2>
                 <a href={artist?.url? artist?.url : "#"} className={artist?.url? "text-blue-500" : "text-yellow-500"}>{artist?.url? artist?.url : "No URL listed"}</a>
                 <h2 className="font-thin font-sans">{artist?.bio}</h2>
-
+                <Button className="mt-4">Book Artist</Button>
                 
             </div>
             

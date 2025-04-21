@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
         port: '',
-        pathname: '/a/ACg8ocIUBtoHnTurNt9i8BOZ9oNHr1KPqirhArEie8CAofWClmtCISMV=s96-c',
+        pathname: '/a/ACg8ocLARBhzn03JtdmgElbUtLBMkXxxPPaz_FlALznn8NcC0b3-zqyi=s96-c',
       },
     ],
   },

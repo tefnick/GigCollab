@@ -1,37 +1,47 @@
-import { Gig as GigModel, GigStatus} from "@prisma/client"
+import { Gig as GigModel, GigStatus, Venue } from "@prisma/client"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-interface GigProps extends GigModel {
-    venue : {
-        name: string;
-        address?: string;
-        city?: string;
-    },
+type GigProps = GigModel & {
+    date: Date, 
+    eventName: string,
     status: GigStatus;
+    venue: Venue & {
+        state: {
+            name: string;
+        }
+    },
     lineup: {
         id: number;
         name: string;
     }[]
 }
 
-export default function Gig({id, eventName, date, venue, lineup, status}: GigProps) {
-    console.log('gig venue...')
-    console.log(venue)
+export default function Gig({venue, lineup, status, date, eventName }: GigProps) {
+    console.log('venue' , venue)
     const eventDisplayDate = date?.toLocaleString()
-    const eventStatusStyles = status === 'CLOSED'? "text-red-500" : "text-green-500"
+    const eventStatusStyles = status === 'CLOSED' ? "text-red-500" : "text-green-500"
     return (
-        <article key={id} className="hover:bg-slate-400 dark:hover:bg-blue-700 rounded-xl p-4">
-            <h1 className="font-semibold mt-2 text-xl" >{eventName}</h1>
-            <h2>Venue: {venue.name}</h2>
-            <h1>{eventDisplayDate}</h1>
-            <h2 className="mt-2">Lineup:</h2>
-            <ul>
-                {lineup?.map((artist) => (
-                    <li key={artist.id}>
-                        - {artist.name}
-                    </li>))}
-            </ul>
-            <h2 className={eventStatusStyles}>Event Status: &quot;{status}&quot;</h2>
-
-        </article>
+        <Card className="w-[350px] hover:bg-slate-200">
+            <CardHeader>
+                <CardTitle>{eventName}</CardTitle>
+                <CardDescription>
+                    <p className="font-semibold">{venue.name}</p>
+                    <p>{venue.city}, {venue.state.name}</p>
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4">
+                <div className="space-y-1">
+                    <div className="text-sm font-medium leading-none">
+                        {eventDisplayDate}<br/>
+                        <h2 className="my-4 font-semibold">Lineup</h2>
+                        {lineup.map((artist) => (
+                            <span key={artist.id} className="text-sm font-medium leading-none">
+                                - {artist.name}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
     )
 }

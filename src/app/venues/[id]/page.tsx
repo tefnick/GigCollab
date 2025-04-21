@@ -22,8 +22,12 @@ async function getVenueById(id: string) {
                     }
                 },
                 include: {
-                    venue: {select: {name: true}},
-                    lineup: {select: {id: true, name: true}}
+                    venue: {
+                        include: {
+                            state: true
+                        }
+                    },
+                    lineup: true,
                 },
                 orderBy: {
                     date: 'asc'
@@ -41,7 +45,7 @@ export default async function VenueDetailsPage({ params }: { params: { id: strin
 
     let venueContent = (
         <div key={venue?.id}>
-            <div className="bg-slate-400 dark:bg-slate-800 p-6">
+            <div className="p-6 rounded-md border-b-2 shadow-md">
                 <h1 className="font-bold text-xl mb-4">Venue Details</h1>
                 <h1>{venue?.name}</h1>
                 <h3 className="text-blue-700 hover:text-blue-500">{venue?.url}</h3>
