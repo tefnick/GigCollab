@@ -20,7 +20,7 @@ export async function Header({
             <div className="flex items-center justify-between px-2">
                 <div className="grid gap-1">
                     <h1 className="font-heading text-2xl md:text-3xl px-2">{heading}</h1>
-                    {text && <p className="text-lg text-muted-foreground px-2">{text}</p>}
+                    {text && <p className="sm:hidden text-lg text-muted-foreground px-2">{text}</p>}
                 </div>
                 {children}
                 <div className="flex items-center justify-end">
