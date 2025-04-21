@@ -14,9 +14,9 @@ export default async function MyUpcomingGigsPage({ params }: { params: { artistI
 
     return (
         <>
-            <h1 className="flex justify-items-start font-bold text-2xl mt-6 mb-6">My Upcoming Gigs</h1>
+            <h1 className="flex justify-items-start font-bold text-2xl mt-6 mb-6 ml-4">My Upcoming Gigs</h1>
             {upcomingGigs?.length === 0 && <p className="text-center">No upcoming gigs found. Time to get out there!</p>}
-            <ul>
+            <ul className='ml-4'>
                 {upcomingGigs?.map((gig) => (
                     <Gig key={gig.id} {...gig}/>
                 ))}
