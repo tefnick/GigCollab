@@ -38,13 +38,15 @@ export default function Gig({venue, lineup, status, date, eventName }: GigProps)
                         {eventDisplayDate}<br/>
                         <h3 className="mt-6">Event Status:</h3>
                         <h3 className={`mt-2 ${eventStatusStyles}`}>{status}</h3>
-                        <div className="border-2 border-slate-100 mt-4 pt-4 rounded-md">
-                            <h3 className="m-2 font-semibold">Lineup</h3>
+                        <div className="border-slate-100 mt-4 pt-4 rounded-md mb-4">
+                            <h3 className="m-2 mb-4 font-semibold">Lineup</h3>
                             {lineup.map((artist) => (
-                                <Link href={`/artists/${artist.id}`} key={artist.id}>
-                                    <span key={artist.id} className="text-slate-500 font-medium leading-none p-4 my-6">
-                                        - {artist.name}
-                                    </span>
+                                <Link href={`/artists/${artist.id}`} key={artist.id} className="">
+                                    <div className=" p-2 border-2 hover:text-blue-700 border-slate-100 rounded-md">
+                                        <span key={artist.id} className="font-medium leading-none p-4 my-6 mb-6">
+                                            {artist.name}
+                                        </span>
+                                    </div>
                                 </Link>
                             ))}
                         </div>

@@ -1,5 +1,6 @@
 import GigForm from '@/components/gigs/GigForm'
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from '@/components/ui/form'
 import { getVenues } from '@/lib/dbActions'
 import { Venue } from '@prisma/client'
@@ -12,7 +13,9 @@ export default async function VenueBooking() {
   return (
     <>
     <div className="flex justify-center font-bold text-2xl mt-6 mb-6">Venue Booking Request</div>
-    <GigForm venues={venues}/>
+    <Card className='w-[40%] mx-auto p-6'>
+      <GigForm venues={venues}/>
+    </Card>
     </>
   )
 }
