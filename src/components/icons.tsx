@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { IconSvgProps } from "@/types";
+import { IconSvgProps } from "@/src/types";
 
 export const Logo: React.FC<IconSvgProps> = ({
   size = 36,
@@ -17,7 +17,40 @@ export const Logo: React.FC<IconSvgProps> = ({
   >
     <path
       clipRule="evenodd"
-      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
+      d="
+        M5 3 H19 a2 2 0 0 1 2 2 V19 a2 2 0 0 1 -2 2 H5 a2 2 0 0 1 -2 -2 V5 a2 2 0 0 1 2 -2 Z
+
+        M7 2 v3
+        M17 2 v3
+
+        M4 8 H20
+
+        M7 10 h2 v2 H7 Z
+        M10 10 h2 v2 h-2 Z
+        M13 10 h2 v2 h-2 Z
+        M16 10 h2 v2 h-2 Z
+
+        M7 13 h2 v2 H7 Z
+        M10 13 h2 v2 h-2 Z
+        M13 13 h2 v2 h-2 Z
+        M16 13 h2 v2 h-2 Z
+
+        M7 16 h2 v2 H7 Z
+        M10 16 h2 v2 h-2 Z
+        M13 16 h2 v2 h-2 Z
+        M16 16 h2 v2 h-2 Z
+
+        M7 19 h2 v2 H7 Z
+        M10 19 h2 v2 h-2 Z
+        M13 19 h2 v2 h-2 Z
+        M16 19 h2 v2 h-2 Z
+
+        M9 6.3 a0.7 0.7 0 1 0 0 1.4 a0.7 0.7 0 1 0 0 -1.4 Z
+        M13 6.3 a0.7 0.7 0 1 0 0 1.4 a0.7 0.7 0 1 0 0 -1.4 Z
+
+        M19 10.5 v8
+        M18 12.5 h2 v4 h-2 Z
+      "
       fill="currentColor"
       fillRule="evenodd"
     />
