@@ -1,4 +1,4 @@
-import { User, Location, Artist, Venue, Gig } from "@/lib/models/models";
+import { User, Location, Artist, Venue, Gig } from "@/src/lib/models/models";
 
 export const locations: Location[] = [
     {

@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { prisma } from "./prisma"
-import { auth } from "@/auth"
+import { auth } from "@/src/auth"
 
 export async function getVenues() {
   try {
